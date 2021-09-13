@@ -2,6 +2,9 @@ const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
 
+const geocode = require('./utlis/geocode')
+const forcast = require('./utlis/forcast')
+
 const app = express()
 const port = 3000
 
@@ -46,10 +49,20 @@ app.get('/weather', (req, res) => {
       error: 'You haven\'t provided a search Address'
     })
   }
-  res.send({
-    location: 'Patna',
-    Condition: 'Hottest Day 🔥',
-    address: req.query.address
+  geocode(req.query.address, (error, { Latitude, Longitude, Location } = {}) => {
+    if (error) {
+      return res.send({error})
+    }
+    forcast(Latitude, Longitude, (error, forecastData) => {
+      if (error) {
+        return res.send({error})
+      }
+      return res.send({
+        Location: Location,
+        Weather: forecastData,
+        Address: req.query.address
+      })
+    })
   })
 })
 
