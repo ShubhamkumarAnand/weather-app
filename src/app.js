@@ -21,22 +21,22 @@ app.use(express.static(pathToDirectory))
 app.get('', (req, res) => {
   res.render('index', {
     title: 'Weather',
-    name: 'imskanand'
+    name: 'Shubham Kumar Anand'
   })
 })
 
 app.get('/about', (req, res) => {
   res.render('about', {
     title: 'About',
-    name: 'imskanand'
+    name: 'Shubham Kumar Anand'
   })
 })
 
 app.get('/help', (req, res) => {
   res.render('help', {
-    service: 'what i can help you with!',
+    helpText: 'what i can help you with!',
     title: 'Help',
-    name: 'imskanand'
+    name: 'Shubham Kumar Anand'
   })
 })
 
@@ -48,17 +48,17 @@ app.get('/weather', (req, res) => {
 })
 
 app.get('/help/*', (req, res) => {
-  res.send('404', {
+  res.render('404', {
     title: 'Help Page Not found',
-    errorMessage: 'Help Article Not Found!',
-    name: 'imskanand'
+    name: 'Shubham Kumar Anand',
+    errorMessage: 'Help Article Not Found!'
   })
 })
 
 app.get('*', (req, res) => {
   res.render('404', {
     title: '404 Not Found',
-    name: 'imskanand',
+    name: 'Shubham Kumar Anand',
     errorMessage:'Page Not Available'
   })
 })
