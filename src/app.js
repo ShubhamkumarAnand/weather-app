@@ -6,7 +6,7 @@ const geocode = require('./utlis/geocode')
 const forcast = require('./utlis/forcast')
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 
 // Define path foe Express config
 const pathToDirectory = path.join(__dirname, '../public')
@@ -83,5 +83,5 @@ app.get('*', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log('Server is Up and Running on port 3000')
+  console.log('Server is Up and Running on port '+ port)
 })
