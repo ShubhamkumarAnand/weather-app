@@ -6,16 +6,11 @@ const forcast = (latitude, longitude, callback) => {
   request({ url, json: true }, (error, { body }) => {
     if (error) {
       callback('Unable to connect to Weather Stack APIs service!', undefined)
-    } else if (body.current.length === 0) {
+    } else if (body.error) {
       callback('Unable to find Weather for the Requested Location! Try Again with correct Location Please !', undefined)
     } else {
-      callback(undefined, {
-        CurrentForcast: body.current.weather_descriptions[0],
-        Temperature: body.current.temperature,
-        WindSpeed: body.current.wind_speed,
-        Humidity: body.current.humidity
-      })
-}
+      callback(undefined, `The Current Weather is ${body.current.weather_descriptions[0]}. The Current Temperature is ${body.current.temperature} °F and Wind Speed is ${body.current.wind_speed} km/hr with Humidity of ${body.current.humidity} rh.`)
+    }
   })
 }
 
