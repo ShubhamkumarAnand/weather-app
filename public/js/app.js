@@ -1,15 +1,24 @@
-console.log('This is the Internal JavaScript!!')
-fetch('http://puzzle.mead.io/puzzle').then((response) => {
-  response.json().then((data) => {
-    console.log(data)
+const weatherForm = document.querySelector('form')
+const search = document.querySelector('input')
+
+const locationOutput = document.querySelector('#location')
+const weatherOutput = document.querySelector('#weather')
+
+weatherForm.addEventListener('submit', (e) => {
+  e.preventDefault()
+  const Location = search.value
+
+  locationOutput.textContent = 'Loding...'
+  weatherOutput.textContent = ''
+
+  fetch(`http://localhost:3000/weather?address=${Location}`).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+       return locationOutput.textContent = data.error
+      }
+      locationOutput.textContent = data.Location
+      weatherOutput.textContent = data.forcast
+    })
   })
-})
-fetch('http://localhost:3000/weather?address=!').then((response) => {
-  response.json().then((data) => {
-    if (data.error) {
-      return console.log(data.error)
-    }
-    console.log(data.Location)
-    console.log(data.forcast)
-  })
+  console.log(Location)
 })

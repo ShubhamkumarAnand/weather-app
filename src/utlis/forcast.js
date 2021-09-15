@@ -9,7 +9,7 @@ const forcast = (latitude, longitude, callback) => {
     } else if (body.error) {
       callback('Unable to find Weather for the Requested Location! Try Again with correct Location Please !', undefined)
     } else {
-      callback(undefined, `The Current Weather is ${body.current.weather_descriptions[0]}. The Current Temperature is ${body.current.temperature} °F and Wind Speed is ${body.current.wind_speed} km/hr with Humidity of ${body.current.humidity} rh.`)
+      callback(undefined, `The Current Weather is ${body.current.weather_descriptions[0]}. The Current Temperature is ${body.current.temperature} °F. The Wind Speed is ${body.current.wind_speed} km/hr with Humidity of ${body.current.humidity} rh. Have A Nice Day! 😊`)
     }
   })
 }
