@@ -37,7 +37,7 @@ app.get('/about', (req, res) => {
 
 app.get('/help', (req, res) => {
   res.render('help', {
-    helpText: 'what i can help you with!',
+    helpText: 'What i can help you with!',
     title: 'Help',
     name: 'Shubham Kumar Anand'
   })
@@ -83,5 +83,5 @@ app.get('*', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log('Server is Up and Running on port '+ port)
+  console.log('Server is Up and Running on port ' + port)
 })
